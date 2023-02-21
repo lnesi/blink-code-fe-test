@@ -37,7 +37,6 @@ export default function useApi() {
       last_updated: new Date().toString(),
       id: Math.floor(100000 * Math.random()),
     };
-    console.log(messageObj);
     newconvers[selectedIndex].messages.push(messageObj);
     setConversations(newconvers);
   };
