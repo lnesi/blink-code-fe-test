@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Conversations from "./components/Conversations";
+import ChatBox from "./components/ChatBox";
+import useApi from "./hooks/useApi";
 function App() {
+  const { conversations, selectedIndex, setSelectedIndex, sendMessage } =
+    useApi();
+  if (conversations.length === 0) return <div>Loading</div>;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Conversations data={conversations} setSelectedIndex={setSelectedIndex} />
+      <ChatBox
+        sendMessage={sendMessage}
+        messages={conversations[selectedIndex].messages}
+      />
     </div>
   );
 }
